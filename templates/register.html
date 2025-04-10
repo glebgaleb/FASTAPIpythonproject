@@ -1,19 +1,88 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uk">
 <head>
     <meta charset="UTF-8">
     <title>Register</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #e0f7fa, #80deea);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        form {
+            background-color: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 450px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #0277bd;
+            margin-bottom: 24px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: #01579b;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="password"],
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #b3e5fc;
+            border-radius: 6px;
+            box-sizing: border-box;
+        }
+
+        button[type="submit"] {
+            background-color: #0288d1;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            width: 100%;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #0277bd;
+        }
+    </style>
 </head>
 <body>
-    <h1>Register</h1>
-    <form action="/register" method="post">
-        <label>Login: <input type="text" name="login" required></label><br><br>
-        <label>Password: <input type="password" name="password" required></label><br><br>
-        <label>First Name: <input type="text" name="first_name" required></label><br><br>
-        <label>Last Name: <input type="text" name="last_name" required></label><br><br>
-        <label>Birth Date: <input type="number" name="birth_date" required></label><br><br>
-        <input type="submit" value="Register">
+    <form method="POST" action="/register">
+        <h1>Реєстрація</h1>
+
+        <label for="login">Логін:</label>
+        <input type="text" id="login" name="login" required>
+
+        <label for="password">Пароль:</label>
+        <input type="password" id="password" name="password" required>
+
+        <label for="first_name">Ім’я:</label>
+        <input type="text" id="first_name" name="first_name" required>
+
+        <label for="last_name">Прізвище:</label>
+        <input type="text" id="last_name" name="last_name" required>
+
+        <label for="birth_date">Дата народження:</label>
+        <input type="number" id="birth_date" name="birth_date" required>
+
+        <button type="submit">Зареєструватись</button>
     </form>
-    <a href="/login">Already have an account? Login here</a>
 </body>
 </html>
