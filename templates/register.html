@@ -61,6 +61,22 @@
         button[type="submit"]:hover {
             background-color: #0277bd;
         }
+
+        .register-link {
+         margin-top: 20px;
+        text-align: center;
+        }
+
+        .register-link a {
+        color: #01579b;
+        text-decoration: none;
+        font-weight: bold;
+        }
+
+        .register-link a:hover {
+        text-decoration: underline;
+        }
+
     </style>
 </head>
 <body>
@@ -83,6 +99,10 @@
         <input type="number" id="birth_date" name="birth_date" required>
 
         <button type="submit">Зареєструватись</button>
+
+        <div class="register-link">
+        <a href="/login">У вас уже є аккаунт? Увійти</a>
+        </div>
     </form>
 </body>
 </html>

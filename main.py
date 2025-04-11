@@ -121,7 +121,7 @@ def view_users(request: Request, db: Session = Depends(get_db)):
     users = db.query(UserDB).all()
     return templates.TemplateResponse("view_users.html", {"request": request, "users": users})
 
-@app.get("/main/page", response_class=HTMLResponse)
+@app.get("/", response_class=HTMLResponse)
 def index(request: Request):
     return templates.TemplateResponse("index.html", {"request": request})
 
@@ -184,4 +184,11 @@ def remove_from_cart(
         cart_items.remove(item)
     response = RedirectResponse("/cart", status_code=303)
     response.set_cookie(key="cart", value=json.dumps(cart_items))
+    return response
+
+@app.get("/logout")
+def logout():
+    response = RedirectResponse(url="/login", status_code=303)
+    response.delete_cookie("user_login")
+    response.delete_cookie("cart")
     return response
