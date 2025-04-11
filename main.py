@@ -37,7 +37,7 @@ def get_db():
     finally:
         db.close()
 
-# Pydantic model for registering a user (JSON approach)
+
 class RegisterUserRequest(BaseModel):
     login: str
     password: str
@@ -45,12 +45,12 @@ class RegisterUserRequest(BaseModel):
     last_name: str
     birth_date: str
 
-# Endpoint for displaying the registration form
+
 @app.get("/register", response_class=HTMLResponse)
 def register_form(request: Request):
     return templates.TemplateResponse("register.html", {"request": request})
 
-# Endpoint for processing the registration form (Form data)
+
 @app.post("/register")
 def register_user(
     response: Response,
@@ -73,10 +73,10 @@ def register_user(
     db.commit()
     return RedirectResponse(url="/login", status_code=303)
 
-# Endpoint for processing the registration (JSON approach)
+
 @app.post("/register/json")
 def register_user_json(
-    user: RegisterUserRequest,  # Data is received as JSON
+    user: RegisterUserRequest,
     db: Session = Depends(get_db)
 ):
     hashed_password = hashlib.sha256(user.password.encode()).hexdigest()
@@ -91,12 +91,10 @@ def register_user_json(
     db.commit()
     return RedirectResponse(url="/login", status_code=303)
 
-# Endpoint for displaying the login form
 @app.get("/login", response_class=HTMLResponse)
 def login_form(request: Request):
     return templates.TemplateResponse("login.html", {"request": request})
 
-# Endpoint for processing the login (Form data)
 @app.post("/login")
 def login_user(
     response: Response,
@@ -112,7 +110,7 @@ def login_user(
         return response
     raise HTTPException(status_code=401, detail="Invalid credentials")
 
-# Endpoint for displaying users (after successful login)
+
 @app.get("/user/view", response_class=HTMLResponse)
 def view_users(request: Request, db: Session = Depends(get_db)):
     user_login = request.cookies.get("user_login")
